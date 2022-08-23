@@ -1,8 +1,16 @@
 *{
     text-align: center;
+    box-sizing: border-box;
 }
 
 body{
     color: #fff;
     background-color: #121212;
+}
+
+canvas{
+    margin-top: 40px;
+    background-color: #353535;
+    color: #fff;
+    border: 3px solid #000;
 }

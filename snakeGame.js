@@ -59,16 +59,7 @@ function drawSnakePart(snakePart) {
   snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
 }
 
-function has_game_ended() {
-  for (let i = 4; i < snake.length; i++) {
-    if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true;
-  }
-  const hitLeftWall = snake[0].x < 0;
-  const hitRightWall = snake[0].x > snakeboard.width - 10;
-  const hitToptWall = snake[0].y < 0;
-  const hitBottomWall = snake[0].y > snakeboard.height - 10;
-  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall;
-}
+
 
 function change_direction(event) {
   const LEFT_KEY = 37;

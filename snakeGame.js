@@ -13,7 +13,11 @@ let snake = [
 const board_background = "#353535";
 const snake_col = "#c7a900";
 const snake_border = "#000";
+const food_color = "#218d00";
+const food_border = "#0f4100";
 
+let food_x = 100;
+let food_y = 20;
 let changing_direction = false;
 // Horizontal velocity
 let dx = 10;
@@ -24,16 +28,18 @@ document.addEventListener("keydown", change_direction);
 
 // main function called repeatedly to keep the game running
 function main() {
-    if (has_game_ended()) return;
-    changing_direction = false;
-    setTimeout(function onTick() {
-      clear_board();
-      move_snake();
-      drawSnake();
-      // Call main again
-      main();
-    }, 100);
-  }
+  if (has_game_ended()) return;
+  changing_direction = false;
+  setTimeout(function onTick() {
+    clear_board();
+    move_snake();
+    drawSnake();
+    drawFood();
+    random_food(0,snakeboard.width-10)
+    // Call main again
+    main();
+  }, 100);
+}
 
 // draw a border around the canvas
 function clear_board() {
@@ -57,6 +63,13 @@ function drawSnakePart(snakePart) {
 
   snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
   snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+}
+
+function drawFood() {
+  snakeboard_ctx.fillStyle = food_color;
+  snakeboard_ctx.strokestyle = food_border;
+  snakeboard_ctx.fillRect(food_x, food_y, 10, 10);
+  snakeboard_ctx.strokeRect(food_x, food_y, 10, 10);
 }
 
 function has_game_ended() {
@@ -103,7 +116,7 @@ function change_direction(event) {
 }
 
 function move_snake() {
-    const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-    snake.unshift(head);
-    snake.pop();
-  }
+  const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+  snake.unshift(head);
+  snake.pop();
+}

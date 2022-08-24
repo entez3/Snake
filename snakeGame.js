@@ -131,11 +131,15 @@ function change_direction(event) {
 }
 function move_snake() {
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+  snake.unshift(head);
+
   const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
   if (has_eaten_food) {
+    // Increase score
+    
     // Generate new food location
     gen_food();
+  } else {
+    snake.pop();
   }
-  snake.unshift(head);
-  snake.pop();
 }

@@ -16,13 +16,16 @@ const snake_border = "#000";
 const food_color = "#218d00";
 const food_border = "#0f4100";
 
-let food_x = 100;
-let food_y = 20;
+let food_x;
+let food_y;
 let changing_direction = false;
 // Horizontal velocity
 let dx = 10;
 // Vertical velocity
 let dy = 0;
+
+// Generate frist food location
+gen_food();
 main();
 document.addEventListener("keydown", change_direction);
 
@@ -32,11 +35,10 @@ function main() {
   changing_direction = false;
   setTimeout(function onTick() {
     clear_board();
+    drawFood();
     move_snake();
     drawSnake();
-    drawFood();
-    random_food(0,snakeboard.width-10)
-    // Call main again
+    // repeat
     main();
   }, 100);
 }
@@ -82,7 +84,20 @@ function has_game_ended() {
   const hitBottomWall = snake[0].y > snakeboard.height - 10;
   return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall;
 }
-
+// Generate new food location
+function random_food(min, max) {
+  return Math.round((Math.random() * (max - min) + min) / 10) * 10;
+}
+function gen_food() {
+  food_x = random_food(0, snakeboard.width - 10);
+  food_y = random_food(0, snakeboard.height - 10);
+  snake.forEach(function has_snake_eaten_food(part) {
+    const has_eaten = part.x == food_x && part.y == food_y;
+    if (has_eaten) {
+      gen_food();
+    }
+  });
+}
 function change_direction(event) {
   const LEFT_KEY = 37;
   const RIGHT_KEY = 39;
@@ -114,9 +129,13 @@ function change_direction(event) {
     dy = 10;
   }
 }
-
 function move_snake() {
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+  const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
+  if (has_eaten_food) {
+    // Generate new food location
+    gen_food();
+  }
   snake.unshift(head);
   snake.pop();
 }

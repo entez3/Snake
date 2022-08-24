@@ -9,16 +9,33 @@ body {
 }
 
 canvas {
-  grid-column: 2;
-  margin-top: 40px;
-  background-color: #353535;
-  color: #fff;
   border: 3px solid #000;
 }
 
-@media screen and (max-width:400px) {
-    canvas{
-        width: 300px;
-        height: 300px;
-    }
+button {
+  display: block;
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+  left: 45.5vw;
+  cursor: pointer;
+  background-color: #dc143c;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+}
+
+button:active {
+  background-color: #72061b;
+}
+
+button:hover {
+  border: #000 1px solid;
+}
+
+@media screen and (max-width: 400px) {
+  canvas {
+    width: 300px;
+    height: 300px;
+  }
 }

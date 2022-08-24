@@ -30,6 +30,13 @@ gen_food();
 main();
 document.addEventListener("keydown", change_direction);
 
+const restartBtn = document.getElementById("restart");
+restartBtn.addEventListener(
+  "click",
+  (handelClick = () => {
+    window.location.reload();
+  })
+);
 // main function called repeatedly to keep the game running
 function main() {
   if (has_game_ended()) return;

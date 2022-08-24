@@ -16,6 +16,11 @@ const snake_border = "#000";
 const food_color = "#218d00";
 const food_border = "#0f4100";
 
+let record = 0;
+function setRecord() {
+  record = localStorage.getItem("record");
+  document.getElementById("record").innerHTML = record;
+}
 let score = 0;
 let food_x;
 let food_y;
@@ -35,6 +40,8 @@ restartBtn.addEventListener(
   "click",
   (handelClick = () => {
     window.location.reload();
+    record = localStorage.getItem("record");
+    document.getElementById("record").innerHTML = record;
   })
 );
 // main function called repeatedly to keep the game running
@@ -42,6 +49,7 @@ function main() {
   if (has_game_ended()) return;
   changing_direction = false;
   setTimeout(function onTick() {
+    setRecord();
     clear_board();
     drawFood();
     move_snake();
@@ -90,6 +98,13 @@ function has_game_ended() {
   const hitRightWall = snake[0].x > snakeboard.width - 10;
   const hitToptWall = snake[0].y < 0;
   const hitBottomWall = snake[0].y > snakeboard.height - 10;
+  //record
+  if (record < score) {
+    record = score;
+    document.getElementById("record").innerHTML = record;
+    localStorage.setItem("record", record);
+    console.log(localStorage);
+  }
   return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall;
 }
 // Generate new food location

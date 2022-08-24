@@ -1,6 +1,7 @@
 * {
   text-align: center;
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
@@ -10,6 +11,10 @@ body {
 
 canvas {
   border: 3px solid #000;
+}
+
+h2{
+    margin: 20px;
 }
 
 button {

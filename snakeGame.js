@@ -16,6 +16,7 @@ const snake_border = "#000";
 const food_color = "#218d00";
 const food_border = "#0f4100";
 
+let score = 0;
 let food_x;
 let food_y;
 let changing_direction = false;
@@ -132,11 +133,11 @@ function change_direction(event) {
 function move_snake() {
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
   snake.unshift(head);
-
   const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
   if (has_eaten_food) {
     // Increase score
-    
+    score += 10;
+    document.getElementById("score").innerHTML = score;
     // Generate new food location
     gen_food();
   } else {

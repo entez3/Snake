@@ -9,20 +9,36 @@ body {
   background-color: #121212;
 }
 
+.link {
+  max-width: 5vh;
+  filter: saturate(0);
+  margin: 0 7px;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link.g {
+  width: 4vh !important;
+}
+
+.link:hover {
+  filter: saturate(100);
+}
+
 canvas {
   border: 3px solid #000;
 }
 
-h2{
-    margin: 20px;
+h2 {
+  margin: 20px;
 }
 
 button {
-  display: block;
-  position: relative;
   margin: 10px;
   padding: 10px;
-  left: 45.5vw;
   cursor: pointer;
   background-color: #dc143c;
   color: #fff;

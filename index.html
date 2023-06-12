@@ -16,7 +16,18 @@
         <h3>Score: <span id="score">0</span></h3>
         <h3>Record: <span id="record">0</span></h3>
         <canvas id="gameCanvas" width="400" height="400"></canvas>
-        <button id="restart">RESTART</button>
+        <div class="btn">
+            <button id="restart">RESTART</button>
+        </div>
+        <div class="footer">
+            <a href="https://github.com/entez3">
+                <img class='link' src="/assets/github-250.png" alt="github" />
+            </a>
+            <a href="https://mail.google.com/mail/u/m.entezarian2@gmail.com">
+                <img class='link g' src="/assets/google-240.png" alt="gmail" />
+            </a>
+        </div>
+
     </main>
     <script>const snakeboard = document.getElementById("gameCanvas");
         const snakeboard_ctx = gameCanvas.getContext("2d");
